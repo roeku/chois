@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CH.O.I.S.</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="style/images/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="style/css/app.css">
+    <link type="text/css" rel="stylesheet" href="style/css/normalize.css">
+    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="too-small"></div>
+  <noscript class="no-script"><h1>Dit zal niet werken zonder javascript te activeren.<br/>Activeer het en vernieuw deze pagina.</h1></noscript>
+  <div class="more-information"></div>
+  <div class="begin container"></div>
+  <div class="scheibner"><h3>Voor ons <a target="_blank" href="http://www.scheibner.de/" alt="scheibner website"><img src="style/images/logo-scheibner.png" class="scheibner-logo"></a> is jouw veiligheid belangrijk.</h3><h4>gepresenteerd door</h4><a target="_blank" href="http://www.mad-fac.be/" alt="mad-fac website"><img class="mad-logo" src="style/images/mad-logo.png"></a></div>
+    <div class="container">
+        <div class="icon-container" style="position: absolute; left:50%;">
+            <div class="start-icon heartbeat" style="position: relative; left: -50%;"></div>
+        </div>
+
+    <!-- INTRODUCTION TEXT -->
+        <div class="introduction centered middle">
+            <div class="introduction-text">
+                <h1 class="intro-text">Wat betekent een <b class="voertuigen"></b> voor jou?</h1>
+                <h1 class="intro2-text"></h1>
+                <span id="message"></span>
+            </div>
+        </div>
+    <!-- ENDINGS -->
+      <div class="endings-field centered">
+        <div class="endings-container">
+        <h1 class="ending1"></h1>
+        <p class="ending2"></p>
+        <div class="redo"></div>
+        <h2 class="ending3"></h2>
+
+      </div>
+      </div>
+         <!-- SHOW CONTROLS -->
+        <div class="controls middle centered"></div>
+
+        <!-- VIDEO CONTAINER -->
+  <div class="story-container">
+        <div class="video-field i">
+
+            <video preload="auto" controls id="video" class="video-js vjs-default-skin video-container i" height="100%" width="100%">
+                <source class="video-mp4" src="videos/start/start.mp4" type="video/mp4">
+                <source class="video-webm" src="videos/start/start.webm" type="video/webm">
+                <source class="video-ogv" src="videos/start/start.ogv" type="application/ogg">
+            </video>
+            <h2 class="centered middle" style="text-align:center;"><a id="begin" class="begin" href="#">Tik <b>hier</b> om je<b> verhaal te bepalen</b></a></h2>
+        </div>
+        <div class="text-field i">
+            <p class="text-container">Met je vrienden maak je een rit met de motor. Na de motor vorige week te laten vallen rijdt hij wel wat raar. De laatste controle was 2 maanden geleden zou hij nu nog in orde zijn?</p>
+        </div>
+        <div class="choices-field middle centered">
+          <div class="decision">
+            <div class="left-choice half" data-choice="0">
+              <div class="choice">
+                <img class="left-image" src="style/images/inorde.png">
+                <h2><b class="left-title">In orde</b></h2>
+              </div>
+            </div>
+            <div class="divider-vertical"></div>
+            <div class="right-choice half" data-choice="7">
+              <div class="choice">
+              <img class="right-image" src="style/images/controle.png">
+              <h2><b class="right-title">Controle</b></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+<div class="credits">
+<!--Speciale dank aan al degene die hebben geholpen in het maken van deze prototype. Zijnde van mijn familie en vrienden tot de jongeren die tijd maakte om mij hiervoor te helpen. Wat de uitslag ook moge zijn ik ben blij hieraan samen met jullie gewerkt te hebben en veel uit geleerd te hebben.-->
+</div>
+<h2 class="starting-up"><b>Tik</b> op het <b>icoontje</b> om <b>verder te gaan</b></h2>
+
+  <script src="js/flowtype.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+// RESIZE TEXT-FIELD USING FLOWTYPE.JS
+$('.text-field').flowtype({
+   minimum   : 500,
+   maximum   : 1200,
+   minFont   : 12,
+   maxFont   : 30,
+   fontRatio : 30
+});
+    // INITIALLY HIDE FIELDS
+    $('.choices-field').hide();
+    $('.begin').hide();
+    $('.i').hide();
+    $('.voertuigen').hide();
+    $('.scheibner').hide();
+    $('.more-info').hide();
+    $('.redo').hide();
+    // CENTER THE ICON ON THE PAGE BEFORE EVERYTHING STARTS
+    $('.icon-container').css('top', '40%');
+    $('.introduction').hide();
+    $('.keywords').hide();
+
+ // WAIT FOR THE ICON CLICK
+$('.icon-container').one('click', (function() {
+  $(function() {
+    var tar = $('.start-icon');
+    tar.fadeIn().animate({
+      height: 0,
+    }, {
+      duration: 'slow',
+      queue: false
+    }, function() {})
+  });
+
+
+  // FADEIN ONE BY ONE
+  nextIntroduction();
+  $('.icon-container').fadeOut(400).animate({
+    height: "200",
+    top: "0"
+  }, 100, function() {
+    $('.icon-container').delay(600).fadeIn(600);
+
+  })
+}));
+
+  function nextIntroduction2() {
+    // SHOW CONTROLS AFTER INTRODUCTION HAS ENDED
+    if(introduction2.length == 0) {
+
+    $('.introduction-text').fadeOut(400);
+$('.controls').hide().html('<div class="control"><div class="half i"><h1>Zorg dat je een goede<br/>internetverbinding hebt.<br/><br/>Gebruik je <b>muis</b> of <br/><b>tik</b> op jouw keuzes.</h1></div></div><div class="divider-vertical i"></div><div class="control"><div class="half muis i"></div><div class="definition i"><p>Kies je eigen verhaal.</p></div></div>').fadeIn(2000);
+
+    $('.begin').fadeIn(2000);
+    $('.video-field').slideDown(1000);
+    $('.begin').one('click', (function() {
+      $('.video-field').fadeOut().animate({
+        "height": "55%",
+        "top": "166px",
+      }, 500).fadeIn(500);
+      $('.controls').fadeOut(600);
+      $('.video-container').fadeIn(1000);
+
+      $('.begin').fadeOut(100);
+
+    }));
+  } else {
+    $('.keywords').fadeIn(600);
+    $('.intro2-text').fadeIn(700).html(introduction2.pop()).fadeIn(1000).delay(1000).fadeOut(1000, nextIntroduction2);
+  }};
+
+    function nextIntroduction() {
+      if (introduction.length == 0) {
+      nextIntroduction2();
+      $('.voertuigen').fadeIn(600).html('motor');
+      } else {
+        $('.starting-up').fadeOut(600);
+        // change content of message, fade in, wait, fade out and continue with next message
+        $('.introduction').fadeIn(600);
+        $('.voertuigen').fadeIn(600).html(introduction.pop()).fadeIn(1000).delay(1500).fadeOut(1000, nextIntroduction);
+
+      }
+    };
+    function nextIntroduction3() {
+      if (introduction3.length == 0) {
+        //DO THINGS AFTER TEXT ENDS
+
+      } else {
+        $('.story-container').hide();
+        $('.intro-text').hide();
+        $('intro-text2').hide();
+        $('.introduction').show();
+        $('.introduction-text').show();
+        $('.ending2').html(introduction3[0]).append(introduction3[1]).append(introduction3[2]).fadeIn(600);
+
+
+      }
+    }
+
+
+    // Video
+    var video = document.getElementById("video")
+
+    // Buttons
+    var playButton = document.getElementById("begin");
+
+    // Event listener for the play trigger
+    playButton.addEventListener("click", function() {
+    if (video.paused == true) {
+        video.play();
+    }});
+
+// DO STUFF AFTER THE VIDEO ENDS
+
+
+  $("#video").on('timeupdate',function(e) {
+        if(this.duration - this.currentTime < 0.2) {
+                console.debug('ended');
+                $(this).trigger('ended');}});
+
+
+// SCREEN IS TOO SMALL
+$(window).resize(function(){
+  if ($(".too-small").css("position") == "absolute" ){
+    // your code here
+    $(".too-small").html("<h1 class='resize'>Please resize your browser.</h1>");
+    $(".container").hide();
+  } else {
+    $(".container").show();
+    $(".resize").hide();
+  }
+});
+
+</script>
+<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" src="js/choices.js"></script>
+<script type="text/javascript">
+  document.createElement('video');document.createElement('audio');document.createElement('track');
+</script>
+</body>
+</html>
